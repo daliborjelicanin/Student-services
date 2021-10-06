@@ -1,0 +1,69 @@
+<a routerLink="/exam/exam-list" style="font-size: x-large;">Back</a>
+
+<form *ngIf="examForm" [formGroup]="examForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <!-- <h3> edit? Update : Insert</h3> -->
+
+      <div class="from-group">
+        <label for="date">Date</label>
+        <input id="date" class="form-control" placeholder="Date" type="date" formControlName="date" />
+        <div class="alert alert-danger" *ngIf="examForm.get('date').touched && examForm.get('date').errors">
+          <span *ngIf="examForm.get('date').touched && examForm.get('date').hasError('required')">
+            <small>Date is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="examPeriod">Exam period</label>
+        <select id="examPeriod" class="form-control" formControlName="examPeriod">
+          <option value="" disabled selected>Please select exam period</option>
+          <option *ngFor="let examPeriod of examPeriods" [ngValue]="examPeriod">
+            {{ examPeriod.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="examForm.get('examPeriod').touched && examForm.get('examPeriod').errors">
+          <span *ngIf="examForm.get('examPeriod').touched && examForm.get('examPeriod').hasError('required')">
+            <small>Exam period is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="subject">Subject</label>
+        <select id="subject" class="form-control" formControlName="subject" (change)="loadProfessors()">
+          <option value="" disabled selected>Please select subject</option>
+          <option *ngFor="let subject of subjects" [ngValue]="subject">
+            {{ subject.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="examForm.get('subject').touched && examForm.get('subject').errors">
+          <span *ngIf="examForm.get('subject').touched && examForm.get('subject').hasError('required')">
+            <small>Subject is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="professor">Professor</label>
+        <select id="professor" class="form-control" formControlName="professor">
+          <option value="" disabled selected>Please select professor</option>
+          <option *ngFor="let professor of professors" [ngValue]="professor">
+            {{ professor.firstName + ' ' + professor.lastName }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="examForm.get('professor').touched && examForm.get('professor').errors">
+          <span *ngIf="examForm.get('professor').touched && examForm.get('professor').hasError('required')">
+            <small>Professor is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row-reverse mt-2">
+        <button class="btn btn-outline-success">Save</button>
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,83 @@
+<a routerLink="/professor/professor-list" style="font-size: x-large;">Back</a>
+
+<div class="d-flex flex-column mt-3">
+  <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+    <h3>Professor details</h3>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Firstname
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.firstName }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Lastname
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.lastName }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Email
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.email }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Address
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.address }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        City
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.city.name }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Phone
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.phone }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Reelection date
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.reelectionDate }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Title
+      </span>
+      <span class="col-lg-8 col-md-6">
+        {{ professor.title.titleName }}
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Subjects
+      </span>
+      <span class="col-lg-8 col-md-6">
+        <div *ngFor="let subject of professor.subjects">
+          {{ subject.name }}
+        </div>
+      </span>
+    </div>
+
+  </div>
+</div>

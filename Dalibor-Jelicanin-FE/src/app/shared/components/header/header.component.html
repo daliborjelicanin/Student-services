@@ -1,0 +1,31 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/home">Home</a>
+    <ng-template ngbNavContent>Home content</ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/subject">Subject</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/student">Student</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/professor">Professor</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/exam-period">Exam period</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/exam">Exam</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="/exam-registration">Exam registration</a>
+    <ng-template ngbNavContent></ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

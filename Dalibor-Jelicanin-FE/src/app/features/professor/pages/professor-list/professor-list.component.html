@@ -1,0 +1,39 @@
+<h2>Professor list</h2>
+
+<button class="btn btn-outline-primary btn-sm m-2" routerLink="../professor-form" >Add professor</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th sortable="firstName" (sort)="onSort($event)" scope="col" >Firstname</th>
+    <th sortable="lastName" (sort)="onSort($event)" scope="col" >Lastname</th>
+    <th sortable="email" (sort)="onSort($event)" scope="col" >Email</th>
+    <th sortable="address" (sort)="onSort($event)" scope="col" >Address</th>
+    <th sortable="city" (sort)="onSort($event)" scope="col" >City</th>
+    <th sortable="phone" (sort)="onSort($event)" scope="col" >Phone</th>
+    <th sortable="reelectionDate" (sort)="onSort($event)" scope="col" >Reelection date</th>
+    <th sortable="title" (sort)="onSort($event)" scope="col" >Title</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let professor of professors; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>{{ professor.firstName }}</td>
+    <td>{{ professor.lastName }}</td>
+    <td>{{ professor.email }}</td>
+    <td>{{ professor.address }}</td>
+    <td>{{ professor.city.name }}</td>
+    <td>{{ professor.phone }}</td>
+    <td>{{ professor.reelectionDate }}</td>
+    <td>{{ professor.title.titleName }}</td>
+    <td>
+      <button class="btn btn-outline-success" [routerLink]="['../professor-details', professor.id]">Details</button>
+      <button class="btn btn-outline-success" [routerLink]="['../professor-form', professor.id]" >Edit</button>
+      <button class="btn btn-outline-danger"  (click)="onDeleteClick(professor)" >Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>

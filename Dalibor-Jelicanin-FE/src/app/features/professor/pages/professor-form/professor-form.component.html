@@ -1,0 +1,133 @@
+<a routerLink="/professor/professor-list" style="font-size: x-large;">Back</a>
+
+<form *ngIf="professorForm" [formGroup]="professorForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <!-- <h3> edit? Update : Insert</h3> -->
+
+      <div class="from-group">
+        <label for="firstName">Firstname</label>
+        <input id="firstName" class="form-control" placeholder="Firstname" type="text" formControlName="firstName" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('firstName').touched && professorForm.get('firstName').errors">
+          <span *ngIf="professorForm.get('firstName').touched && professorForm.get('firstName').hasError('required')">
+            <small>Firstname is required.</small>
+          </span>
+          <span *ngIf="professorForm.get('firstName').touched && professorForm.get('firstName').hasError('minlength')">
+            <small>Firstame must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="lastName">Lastname</label>
+        <input id="lastName" class="form-control" placeholder="Lastname" type="text" formControlName="lastName" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('lastName').touched && professorForm.get('lastName').errors">
+          <span *ngIf="professorForm.get('lastName').touched && professorForm.get('lastName').hasError('required')">
+            <small>Lastname is required.</small>
+          </span>
+          <span *ngIf="professorForm.get('lastName').touched && professorForm.get('lastName').hasError('minlength')">
+            <small>Lastname must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" placeholder="Email" type="text" formControlName="email" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('email').touched && professorForm.get('email').errors">
+          <span *ngIf="professorForm.get('email').touched && professorForm.get('email').hasError('email')">
+            <small>Email is invalid.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="address">Address</label>
+        <input id="address" class="form-control" placeholder="Address" type="text" formControlName="address" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('address').touched && professorForm.get('address').errors">
+          <span *ngIf="professorForm.get('address').touched && professorForm.get('address').hasError('minlength')">
+            <small>Address must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="city">City</label>
+        <select id="city" class="form-control" formControlName="city">
+          <option value="" disabled selected>Please select city</option>
+          <option *ngFor="let city of cities" [ngValue]="city">
+            {{ city.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="professorForm.get('city').touched && professorForm.get('city').errors">
+          <span *ngIf="professorForm.get('city').touched && professorForm.get('city').hasError('required')">
+            <small>City is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="phone">Phone</label>
+        <input id="phone" class="form-control" placeholder="Phone" type="text" formControlName="phone" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('phone').touched && professorForm.get('phone').errors">
+          <span *ngIf="professorForm.get('phone').touched && professorForm.get('phone').hasError('minlength')">
+            <small>Phone must have minimum 9 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="reelectionDate">Reelection date</label>
+        <input id="reelectionDate" class="form-control" placeholder="Reelection date" type="date" formControlName="reelectionDate" />
+        <div class="alert alert-danger" *ngIf="professorForm.get('reelectionDate').touched && professorForm.get('reelectionDate').errors">
+          <span *ngIf="professorForm.get('reelectionDate').touched && professorForm.get('reelectionDate').hasError('required')">
+            <small>Reelection date is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="title">Title</label>
+        <select id="title" class="form-control" formControlName="title">
+          <option value="" disabled selected>Please select title</option>
+          <option *ngFor="let title of titles" [ngValue]="title">
+            {{ title.titleName }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="professorForm.get('title').touched && professorForm.get('title').errors">
+          <span *ngIf="professorForm.get('title').touched && professorForm.get('title').hasError('required')">
+            <small>Title is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <hr />
+    <div class="form-group">
+      <label for="subjects" class="form-label">Subjects</label>
+      <div class="d-flex flex-row justify-content-center">
+        <select id="exams"class="form-control" [formControl]="selectedSubject">
+          <option value="">Please select subject</option>
+          <option *ngFor="let subject of subjects" [ngValue]="subject">
+            {{ subject.name }}
+          </option>
+        </select>
+        <button class="ml-1 btn btn-outline-secondary btn-large" type="button" (click)="addSelectedSubject()">
+          Add subject
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <span class="subject-chip" *ngFor="let subject of professorForm.get('subjects')['controls']; let i = index">
+        {{ subject.value | objectInfo:'name' }}
+        <span (click)="removeSubjectAtIndex(i)" class="subject-chip-close">X</span></span>
+    </div>
+
+      <div class="d-flex flex-row-reverse mt-2">
+        <button class="btn btn-outline-success">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+</form>

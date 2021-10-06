@@ -1,0 +1,31 @@
+<h2>Exam registration list</h2>
+
+<button class="btn btn-outline-primary btn-sm m-2" routerLink="../exam-registration-form" >Add exam registration</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" >Student</th>
+    <th scope="col" >Exam</th>
+    <th scope="col" >Exam period</th>
+    <th scope="col" >Date</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let examRegistration of examRegistrations; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>{{ examRegistration.student.firstName + ' ' + examRegistration.student.lastName }}</td>
+    <td>{{ examRegistration.exam.subject.name }}</td>
+    <td>{{ examRegistration.exam.examPeriod.name }}</td>
+    <td>{{ examRegistration.date }}</td>
+    <td>
+      <button class="btn btn-outline-success" [routerLink]="['../exam-registration-details', examRegistration.id]">Details</button>
+      <button class="btn btn-outline-success" [routerLink]="['../exam-registration-form', examRegistration.id]" >Edit</button>
+      <button class="btn btn-outline-danger"  (click)="onDeleteClick(examRegistration)" >Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>

@@ -1,0 +1,31 @@
+<h2>Exam period list</h2>
+
+<button class="btn btn-outline-primary btn-sm m-2" routerLink="../exam-period-form" >Add exam period</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th sortable="name" (sort)="onSort($event)" scope="col" >Name</th>
+    <th sortable="startDate" (sort)="onSort($event)" scope="col" >Start date</th>
+    <th sortable="completionDate" (sort)="onSort($event)" scope="col" >Completion date</th>
+    <th sortable="active" (sort)="onSort($event)" scope="col" >Active</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let examPeriod of examPeriods; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>{{ examPeriod.name }}</td>
+    <td>{{ examPeriod.startDate }}</td>
+    <td>{{ examPeriod.completionDate }}</td>
+    <td>{{ true == examPeriod.active ? 'Yes':'No' }}</td>
+    <td>
+      <button class="btn btn-outline-success" [routerLink]="['../exam-period-details', examPeriod.id]">Details</button>
+      <button class="btn btn-outline-success" [routerLink]="['../exam-period-form', examPeriod.id]" >Edit</button>
+      <button class="btn btn-outline-danger"  (click)="onDeleteClick(examPeriod)" >Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>

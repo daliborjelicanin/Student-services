@@ -1,0 +1,76 @@
+<a routerLink="/exam-registration/exam-registration-list" style="font-size: x-large;">Back</a>
+
+<form *ngIf="examRegistrationForm" [formGroup]="examRegistrationForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <!-- <h3> edit? Update : Insert</h3> -->
+
+      <div class="from-group">
+        <label for="student">Student</label>
+        <select id="student" class="form-control" formControlName="student">
+          <option value="" disabled selected>Please select student</option>
+          <option *ngFor="let student of students" [ngValue]="student">
+            {{ student.firstName + ' ' + student.lastName }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="examRegistrationForm.get('student').touched && examRegistrationForm.get('student').errors">
+          <span *ngIf="examRegistrationForm.get('student').touched && examRegistrationForm.get('student').hasError('required')">
+            <small>Student is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <!-- <br />
+      <div class="form-group">
+        <label for="exams" class="form-label">Exams</label>
+        <div class="d-flex flex-row justify-content-center">
+          <select id="exams"class="form-control" [formControl]="selectedExam">
+            <option value="">Please select exam</option>
+            <option *ngFor="let exam of exams" [ngValue]="exam">
+              {{ exam.subject.name }}
+            </option>
+          </select>
+          <button class="ml-1 btn btn-outline-secondary btn-large" type="button" (click)="addSelectedExam()">
+            Add exam
+          </button>
+        </div>
+      </div>
+      <div>
+        <span class="exam-chip" *ngFor="let exam of examRegistrationForm.get('exams')['controls']; let i = index">
+          {{ exam.value | objectInfo:'subject.name' }}
+          <span (click)="removeExamAtIndex(i)" class="exam-chip-close">X</span></span>
+      </div> -->
+
+      <div class="from-group">
+        <label for="exam">Exam</label>
+        <select id="exam" class="form-control" formControlName="exam">
+          <option value="" disabled selected>Please select exam</option>
+          <option *ngFor="let exam of exams" [ngValue]="exam">
+            {{ exam.subject.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="examRegistrationForm.get('exam').touched && examRegistrationForm.get('exam').errors">
+          <span *ngIf="examRegistrationForm.get('exam').touched && examRegistrationForm.get('exam').hasError('required')">
+            <small>Exam is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <br>
+      <div class="from-group">
+        <label for="date">Date</label>
+        <input id="date" class="form-control" placeholder="Date" type="date" formControlName="date" />
+        <div class="alert alert-danger" *ngIf="examRegistrationForm.get('date').touched && examRegistrationForm.get('date').errors">
+          <span *ngIf="examRegistrationForm.get('date').touched && examRegistrationForm.get('date').hasError('required')">
+            <small>Date is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row-reverse mt-2">
+        <button class="btn btn-outline-success">Save</button>
+      </div>
+    </div>
+  </div>
+
+</form>

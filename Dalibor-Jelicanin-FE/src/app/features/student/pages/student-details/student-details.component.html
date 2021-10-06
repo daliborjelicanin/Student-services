@@ -1,0 +1,75 @@
+<a routerLink="/student/student-list" style="font-size: x-large;" >Back</a>
+
+<div class="d-flex flex-column mt-3">
+    <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+      <h3>Student details</h3>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Index number
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.indexNumber }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Index year
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.indexYear }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Firstname
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.firstName }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Lastname
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.lastName }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Email
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.email }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Address
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.address }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          Current year of study
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.currentYearOfStudy }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-lg-4 col-md-6">
+          City
+        </span>
+        <span class="col-lg-8 col-md-6">
+          {{ student.city.name }}
+        </span>
+      </div>
+
+    </div>
+
+
+
+</div>

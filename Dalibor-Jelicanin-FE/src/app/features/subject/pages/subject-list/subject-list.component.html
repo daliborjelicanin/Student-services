@@ -1,0 +1,33 @@
+<h2>Subject list</h2>
+
+<button class="btn btn-outline-primary btn-sm m-2" routerLink="../subject-form" >Add subject</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th sortable="name" (sort)="onSort($event)" scope="col" >Name</th>
+    <th sortable="description" (sort)="onSort($event)" scope="col" >Description</th>
+    <th sortable="noOfEsp" (sort)="onSort($event)" scope="col" >No of esp</th>
+    <th sortable="yearOfStudy" (sort)="onSort($event)" scope="col" >Year of study</th>
+    <th sortable="semester" (sort)="onSort($event)" scope="col" >Semester</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let subject of subjects; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>{{ subject.name }}</td>
+    <td>{{ subject.description }}</td>
+    <td>{{ subject.noOfESP }}</td>
+    <td>{{ subject.yearOfStudy }}</td>
+    <td>{{ subject.semester }}</td>
+    <td>
+      <button class="btn btn-outline-success" [routerLink]="['../subject-details', subject.id]">Details</button>
+      <button class="btn btn-outline-success" [routerLink]="['../subject-form', subject.id]" >Edit</button>
+      <button class="btn btn-outline-danger"  (click)="onDeleteClick(subject)" >Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>

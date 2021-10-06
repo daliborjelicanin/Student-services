@@ -1,0 +1,57 @@
+<a routerLink="/exam-period/exam-period-list" style="font-size: x-large;">Back</a>
+
+<form *ngIf="examPeriodForm" [formGroup]="examPeriodForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <!-- <h3> edit? Update : Insert</h3> -->
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" class="form-control" placeholder="Name" type="text" formControlName="name" />
+        <div class="alert alert-danger" *ngIf="examPeriodForm.get('name').touched && examPeriodForm.get('name').errors">
+          <span *ngIf="examPeriodForm.get('name').touched && examPeriodForm.get('name').hasError('required')">
+            <small>Name is required.</small>
+          </span>
+          <span *ngIf="examPeriodForm.get('name').touched && examPeriodForm.get('name').hasError('minlength')">
+            <small>Name must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input id="startDate" class="form-control" placeholder="Start date" type="date" formControlName="startDate" />
+        <div class="alert alert-danger" *ngIf="examPeriodForm.get('startDate').touched && examPeriodForm.get('startDate').errors">
+          <span *ngIf="examPeriodForm.get('startDate').touched && examPeriodForm.get('startDate').hasError('required')">
+            <small>Start date is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="completionDate">Completion date</label>
+        <input id="completionDate" class="form-control" placeholder="Completion date" type="date" formControlName="completionDate" />
+        <div class="alert alert-danger" *ngIf="examPeriodForm.get('completionDate').touched && examPeriodForm.get('completionDate').errors">
+          <span *ngIf="examPeriodForm.get('completionDate').touched && examPeriodForm.get('completionDate').hasError('required')">
+            <small>Completion date is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Active</label> <br>
+        <input type="radio" id="yes" name="active" value="true" formControlName="active">
+        <label for="active">Yes</label>
+        <input type="radio" id="no" name="active" value="false" formControlName="active">
+        <label for="active">No</label>
+      </div>
+
+      <div class="d-flex flex-row-reverse mt-2">
+        <button class="btn btn-outline-success">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+
+</form>

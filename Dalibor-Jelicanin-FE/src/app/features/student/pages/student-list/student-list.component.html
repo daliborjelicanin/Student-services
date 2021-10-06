@@ -1,0 +1,39 @@
+<h2>Student list</h2>
+
+<button class="btn btn-outline-primary btn-sm m-2" routerLink="../student-form" >Add student</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th sortable="indexNumber" (sort)="onSort($event)" scope="col" >Index number</th>
+    <th sortable="indexYear" (sort)="onSort($event)" scope="col" >Index year</th>
+    <th sortable="firstName" (sort)="onSort($event)" scope="col" >Firstname</th>
+    <th sortable="lastName" (sort)="onSort($event)" scope="col" >Lastname</th>
+    <th sortable="email" (sort)="onSort($event)" scope="col" >Email</th>
+    <th sortable="address" (sort)="onSort($event)" scope="col" >Address</th>
+    <th sortable="currentYearOfStudy" (sort)="onSort($event)" scope="col" >Current year of study</th>
+    <th sortable="city" (sort)="onSort($event)" scope="col" >City</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of students; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>{{ student.indexNumber }}</td>
+    <td>{{ student.indexYear }}</td>
+    <td>{{ student.firstName }}</td>
+    <td>{{ student.lastName }}</td>
+    <td>{{ student.email }}</td>
+    <td>{{ student.address }}</td>
+    <td>{{ student.currentYearOfStudy }}</td>
+    <td>{{ student.city.name }}</td>
+    <td>
+      <button class="btn btn-outline-success" [routerLink]="['../student-details', student.id]">Details</button>
+      <button class="btn btn-outline-success" [routerLink]="['../student-form', student.id]" >Edit</button>
+      <button class="btn btn-outline-danger"  (click)="onDeleteClick(student)" >Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>

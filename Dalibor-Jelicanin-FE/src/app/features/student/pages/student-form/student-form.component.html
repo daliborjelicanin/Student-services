@@ -1,0 +1,120 @@
+<a routerLink="/student/student-list" style="font-size: x-large;">Back</a>
+
+<form *ngIf="studentForm" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <!-- <h3> edit? Update : Insert</h3> -->
+
+      <div class="from-group">
+        <label for="indexNumber">Index number</label>
+        <input id="indexNumber" class="form-control" placeholder="Index number" type="text" formControlName="indexNumber" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('indexNumber').touched && studentForm.get('indexNumber').errors">
+          <span *ngIf="studentForm.get('indexNumber').touched && studentForm.get('indexNumber').hasError('required')">
+            <small>Index number is required.</small>
+          </span>
+          <span *ngIf="studentForm.get('indexNumber').touched && studentForm.get('indexNumber').hasError('minlength')">
+            <small>Index number must have exact 4 characters.</small>
+          </span>
+          <span *ngIf="studentForm.get('indexNumber').touched && studentForm.get('indexNumber').hasError('maxlength')">
+            <small>Index number must have exact 4 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="indexYear">Index year</label>
+        <input id="indexYear" class="form-control" placeholder="Index year" type="number" formControlName="indexYear" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('indexYear').touched && studentForm.get('indexYear').errors">
+          <span *ngIf="studentForm.get('indexYear').touched && studentForm.get('indexYear').hasError('required')">
+            <small>Index year is required.</small>
+          </span>
+          <span *ngIf="studentForm.get('indexYear').touched && studentForm.get('indexYear').hasError('min')">
+            <small>Index year must must be between 2000 and 2100.</small>
+          </span>
+          <span *ngIf="studentForm.get('indexYear').touched && studentForm.get('indexYear').hasError('max')">
+            <small>Index year must must be between 2000 and 2100.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="firstName">Firstname</label>
+        <input id="firstName" class="form-control" placeholder="Firstname" type="text" formControlName="firstName" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('firstName').touched && studentForm.get('firstName').errors">
+          <span *ngIf="studentForm.get('firstName').touched && studentForm.get('firstName').hasError('required')">
+            <small>Firstname is required.</small>
+          </span>
+          <span *ngIf="studentForm.get('firstName').touched && studentForm.get('firstName').hasError('minlength')">
+            <small>Firstame must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="lastName">Lastname</label>
+        <input id="lastName" class="form-control" placeholder="Lastname" type="text" formControlName="lastName" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('lastName').touched && studentForm.get('lastName').errors">
+          <span *ngIf="studentForm.get('lastName').touched && studentForm.get('lastName').hasError('required')">
+            <small>Lastname is required.</small>
+          </span>
+          <span *ngIf="studentForm.get('lastName').touched && studentForm.get('lastName').hasError('minlength')">
+            <small>Lastname must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" placeholder="Email" type="text" formControlName="email" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('email').touched && studentForm.get('email').errors">
+          <span *ngIf="studentForm.get('email').touched && studentForm.get('email').hasError('email')">
+            <small>Email is invalid.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="address">Address</label>
+        <input id="address" class="form-control" placeholder="Address" type="text" formControlName="address" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('address').touched && studentForm.get('address').errors">
+          <span *ngIf="studentForm.get('address').touched && studentForm.get('address').hasError('minlength')">
+            <small>Address must have minimum 3 characters.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="currentYearOfStudy">Current year of study</label>
+        <input id="currentYearOfStudy" class="form-control" placeholder="Current year of study" type="text" formControlName="currentYearOfStudy" />
+        <div class="alert alert-danger" *ngIf="studentForm.get('currentYearOfStudy').touched && studentForm.get('currentYearOfStudy').errors">
+          <span *ngIf="studentForm.get('currentYearOfStudy').touched && studentForm.get('currentYearOfStudy').hasError('required')">
+            <small>Current year of study is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="from-group">
+        <label for="city">City</label>
+        <select id="city" class="form-control" formControlName="city">
+          <option value="none" disabled selected>Please select city</option>
+          <option *ngFor="let city of cities" [ngValue]="city">
+            {{ city.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger"
+          *ngIf="studentForm.get('city').touched && studentForm.get('city').errors">
+          <span *ngIf="studentForm.get('city').touched && studentForm.get('city').hasError('required')">
+            <small>City is required.</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row-reverse mt-2">
+        <button class="btn btn-outline-success">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+
+</form>
